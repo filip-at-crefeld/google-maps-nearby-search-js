@@ -55,7 +55,11 @@
 
   <!-- TODO: Step 1C, Get an API key -->
   <!-- TODO: Step 3A, Load the Places Library -->
-  <script async defer src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&callback=initMap">
+  <script type='text/javascript' src='secrets.js'></script>
+  <script async defer>
+    var script = document.createElement('script');
+    script.src = "https://maps.googleapis.com/maps/api/js?key="+secrets.API_KEY+"&callback=initMap";
+    document.body.appendChild(script);
   </script>
 </body>
 
