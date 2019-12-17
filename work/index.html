@@ -128,6 +128,26 @@
       }
 
       /* TODO: Step 3C, Generate markers for search results */
+      // Set markers at the location of each place result
+      function createMarkers(places) {
+          places.forEach(place => {
+          let marker = new google.maps.Marker({
+              position: place.geometry.location,
+              map: map,
+              title: place.name
+          });
+
+          /* TODO: Step 4B: Add click listeners to the markers */
+
+          // Adjust the map bounds to include the location of this marker
+          bounds.extend(place.geometry.location);
+          });
+          /* Once all the markers have been placed, adjust the bounds of the map to
+          * show all the markers within the visible area. */
+          map.fitBounds(bounds);
+      }
+
+      /* TODO: Step 4C: Show place details in an info window */
   </script>
 
   <!-- TODO: Step 1C, Get an API key -->
