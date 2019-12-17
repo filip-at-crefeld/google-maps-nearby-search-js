@@ -180,6 +180,21 @@
           });
 
           /* TODO: Step 4B: Add click listeners to the markers */
+          // Add click listener to each marker
+          google.maps.event.addListener(marker, 'click', () => {
+              let request = {
+              placeId: place.place_id,
+              fields: ['name', 'formatted_address', 'geometry', 'rating',
+                  'website', 'photos']
+              };
+
+              /* Only fetch the details of a place when the user clicks on a marker.
+              * If we fetch the details for all place results as soon as we get
+              * the search response, we will hit API rate limits. */
+              service.getDetails(request, (placeResult, status) => {
+              showDetails(placeResult, marker, status)
+              });
+          });
 
           // Adjust the map bounds to include the location of this marker
           bounds.extend(place.geometry.location);
