@@ -221,6 +221,49 @@
       }
 
       /* TODO: Step 4D: Load place details in a sidebar */
+      // Displays place details in a sidebar
+      function showPanel(placeResult) {
+          // If infoPane is already open, close it
+          if (infoPane.classList.contains("open")) {
+          infoPane.classList.remove("open");
+          }
+
+          // Clear the previous details
+          while (infoPane.lastChild) {
+          infoPane.removeChild(infoPane.lastChild);
+          }
+
+          /* TODO: Step 4E: Display a Place Photo with the Place Details */
+
+          // Add place details with text formatting
+          let name = document.createElement('h1');
+          name.classList.add('place');
+          name.textContent = placeResult.name;
+          infoPane.appendChild(name);
+          if (placeResult.rating != null) {
+          let rating = document.createElement('p');
+          rating.classList.add('details');
+          rating.textContent = `Rating: ${placeResult.rating} \u272e`;
+          infoPane.appendChild(rating);
+          }
+          let address = document.createElement('p');
+          address.classList.add('details');
+          address.textContent = placeResult.formatted_address;
+          infoPane.appendChild(address);
+          if (placeResult.website) {
+          let websitePara = document.createElement('p');
+          let websiteLink = document.createElement('a');
+          let websiteUrl = document.createTextNode(placeResult.website);
+          websiteLink.appendChild(websiteUrl);
+          websiteLink.title = placeResult.website;
+          websiteLink.href = placeResult.website;
+          websitePara.appendChild(websiteLink);
+          infoPane.appendChild(websitePara);
+          }
+
+          // Open the infoPane
+          infoPane.classList.add("open");
+      }
   </script>
 
   <!-- TODO: Step 1C, Get an API key -->
