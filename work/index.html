@@ -252,6 +252,9 @@
           let rating = document.createElement('p');
           rating.classList.add('details');
           rating.textContent = `Rating: ${placeResult.rating} \u272e`;
+          if (placeResult.rating > 4) {
+            rating.textContent += " (Wowie!)"
+          }
           infoPane.appendChild(rating);
           }
           let address = document.createElement('p');
